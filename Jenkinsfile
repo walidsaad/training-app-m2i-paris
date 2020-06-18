@@ -2,7 +2,7 @@ node {
    def mvnHome
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/walidsaad/training-app-m2i-paris.git'
+      git 'https://github.com/walidsaad/training-app-demo.git'
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
@@ -13,7 +13,7 @@ node {
    stage('Build') {
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean build"
+         sh "'${mvnHome}/bin/mvn' -B -DskipTests -Dmaven.test.failure.ignore clean package"
       } else {
          bat(/"${mvnHome}\bin\mvn" -B -DskipTests -Dmaven.test.failure.ignore clean package/)
       }
@@ -35,7 +35,7 @@ node {
    
    stage('Execute Jar') {
       if (isUnix()) {
-         sh "java -jar  target/*.jar"
+         sh "java -jar  target/training-app-1.0-SNAPSHOT-jar-with-dependencies.jar"
       } else {
          bat(/java -jar target\/training-app-1.0-SNAPSHOT-jar-with-dependencies.jar/)
       }
