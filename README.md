@@ -1,2 +1,2 @@
-# training-app-m2i-paris
+# training-app-demo
 Mon premier dépôt Git Maven
