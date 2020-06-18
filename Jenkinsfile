@@ -13,7 +13,8 @@ node {
    stage('Build') {
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -B -DskipTests -Dmaven.test.failure.ignore clean package"
+          
+         sh "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk && '${mvnHome}/bin/mvn' -B -DskipTests -Dmaven.test.failure.ignore clean package"
       } else {
          bat(/"${mvnHome}\bin\mvn" -B -DskipTests -Dmaven.test.failure.ignore clean package/)
       }
@@ -21,7 +22,8 @@ node {
    
    stage('Test') {
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' test"
+          
+         sh "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk && '${mvnHome}/bin/mvn' test"
       } else {
          bat(/"${mvnHome}\bin\mvn" test/)
       }
