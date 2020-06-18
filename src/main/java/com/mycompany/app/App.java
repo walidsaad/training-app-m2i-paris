@@ -78,12 +78,12 @@ static Connection conn = null;
  
 		try {
 			log("-------- Connexion au serveur de données MYSQL ------------");
-			makeJDBCConnection();
+			//makeJDBCConnection();
 			log("-------- Afficher toutes les sessions de formations ------------");
-			getDataFromDB();
+			//getDataFromDB();
 
-			statement.close();
-			conn.close(); // Fermer la connexion
+			//statement.close();
+			//conn.close(); // Fermer la connexion
  
 		} catch (SQLException e) {
  
