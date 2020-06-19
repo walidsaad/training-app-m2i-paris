@@ -9,7 +9,14 @@ node {
       mvnHome = tool 'maven3'
    }
  
-        
+       stage('SonarQube analysis') {
+             // Run the maven build
+      if (isUnix()) {
+         sh "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk && '${mvnHome}/bin/mvn' -B sonar:sonar"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -B sonar:sonar/)
+      }
+        }  
    stage('Build') {
       // Run the maven build
       if (isUnix()) {
